@@ -1,4 +1,6 @@
+const jwt = require("jsonwebtoken");
 const { User } = require("../models/user");
+const JWT_SECRET = process.env.JWT_SECRET;
 
 const createUser = async (req, res) => {
   const { username, password } = req.body;
@@ -14,9 +16,30 @@ const createUser = async (req, res) => {
     } else {
       const user = new User({ username: modifiedUsername, password });
       await user.save();
-      res.json({ user });
+      res.json({ user: user.username });
     }
   }
 };
 
-module.exports = { createUser };
+const logInUser = async (req, res) => {
+  const { username, password } = req.body;
+  const modifiedUsername = username.toLowerCase();
+  console.log(username);
+  console.log(password);
+
+  const user = await User.login(modifiedUsername, password);
+  if (user) {
+    console.log(JWT_SECRET);
+
+    const userId = user._id.toString();
+    const token = jwt.sign({ userId, username: user.username }, JWT_SECRET, {
+      expiresIn: 120,
+      subject: userId,
+    });
+    res.json({ token });
+  } else {
+    res.sendStatus(401);
+  }
+};
+
+module.exports = { createUser, logInUser };

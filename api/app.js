@@ -1,7 +1,10 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
 const { PORT } = require("./settings");
+const JWT_SECRET = process.env.JWT_SECRET;
 const authRouter = require("./routes/auth");
 const userRouter = require("./routes/users");
 const postRouter = require("./routes/posts");
