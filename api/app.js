@@ -13,6 +13,16 @@ const app = express();
 
 app.use(express.json());
 
+app.use((req, res, next) => {
+  const authHeader = req.header("Authorization");
+
+  if (authHeader && authHeader.split(" ")[0] === "Bearer") {
+    const token = authHeader.split(" ")[1];
+    req.user = jwt.verify(token, process.env.JWT_SECRET);
+  }
+  next();
+});
+
 app.use("/users", userRouter);
 app.use("/posts", postRouter);
 app.use("/auth", authRouter);

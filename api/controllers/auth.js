@@ -2,6 +2,9 @@ const jwt = require("jsonwebtoken");
 const { User } = require("../models/user");
 const JWT_SECRET = process.env.JWT_SECRET;
 
+const requireLogin = (req, res, next) => {
+  req.user ? next() : res.sendStatus(401);
+};
 const createUser = async (req, res) => {
   const { username, password } = req.body;
 
@@ -27,7 +30,7 @@ const logInUser = async (req, res) => {
   if (user) {
     const userId = user._id.toString();
     const token = jwt.sign({ userId, username: user.username }, JWT_SECRET, {
-      expiresIn: 120,
+      expiresIn: "2h",
       subject: userId,
     });
     res.json({ token });
@@ -36,4 +39,4 @@ const logInUser = async (req, res) => {
   }
 };
 
-module.exports = { createUser, logInUser };
+module.exports = { requireLogin, createUser, logInUser };
