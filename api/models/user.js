@@ -8,7 +8,6 @@ const userSchema = new mongoose.Schema({
   name: { type: String },
   email: { type: String },
   settings: { name: { type: Boolean }, email: { type: Boolean } },
-  posts: [{ type: mongoose.Schema.Types.ObjectId, ref: "Post" }],
 });
 
 // overwrites the password sent in with an encrypted version
