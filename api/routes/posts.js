@@ -1,10 +1,12 @@
 const express = require("express");
 const { requireLogin } = require("../controllers/auth");
-const { getPosts, newPost } = require("../controllers/posts");
-const { Post } = require("../models/post");
+const handlePosts = require("../controllers/posts");
 const router = express();
 
-router.get("/", requireLogin, getPosts);
+router.get("/", requireLogin, handlePosts.getAllPosts);
+router.post("/", requireLogin, handlePosts.newPost);
+router.get("/:id", requireLogin, handlePosts.getPost);
+router.patch("/:id", requireLogin, handlePosts.editPost);
+router.delete("/:id", requireLogin, handlePosts.deletePost);
 
-router.post("/", requireLogin, newPost);
 module.exports = router;
