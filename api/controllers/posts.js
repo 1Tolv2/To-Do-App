@@ -1,56 +1,53 @@
 const mongoose = require("mongoose");
-const { Post } = require("../models/post");
+const {
+  createPost,
+  getAllPosts,
+  getSinglePost,
+  updateSinglePost,
+  deleteSinglePost,
+} = require("../models/post");
 
-const newPost = async (req, res) => {
+const handleNewPost = async (req, res) => {
   const { title, body } = req.body;
-  const user = req.user;
-  const post = new Post({ author: user.userId, title, body });
-  await post.save();
+  const userId = req.user.userId;
+  const post = await createPost(userId, title, body);
   res.json({ post });
 };
 
-const getAllPosts = async (req, res) => {
-  const data = await Post.find({ author: req.user.userId })
-    .sort({ updatedAt: -1 })
-    .exec();
+const listAllPosts = async (req, res) => {
+  const data = await getAllPosts(req.user.userId);
   res.json({ data });
 };
 
-const getPost = async (req, res) => {
+const listSinglePost = async (req, res) => {
   const id = req.params.id;
-  const data = await Post.findById(id).exec();
+  const data = await getSinglePost(id);
   res.json({ data });
 };
 
 const editPost = async (req, res) => {
   const { userId } = req.user;
-  const { title, body, status, tags } = req.body;
-  const id = req.params.id;
-  await Post.updateOne(
-    {
-      _id: mongoose.Types.ObjectId(id),
-      author: mongoose.Types.ObjectId(userId),
-    },
-    {
-      $set: {
-        title,
-        body,
-        status,
-        tags,
-      },
-    }
-  );
-  res.json({ message: "Post successfully updated" });
+  const postId = req.params.id;
+  const data = await updateSinglePost(userId, postId, req.body);
+  console.log(data);
+  data.modifiedCount > 0
+    ? res.json({ message: "Post successfully updated" })
+    : res.status(404).json({ error: "No post with that id found" });
 };
 
 const deletePost = async (req, res) => {
-  const id = req.params.id;
+  const postId = req.params.id;
   const { userId } = req.user;
-  const data = await Post.deleteOne({
-    _id: mongoose.Types.ObjectId(id),
-    author: mongoose.Types.ObjectId(userId),
-  }).exec();
-  res.json({ data });
+  const data = await deleteSinglePost(postId, userId);
+  data.deletedCount > 0
+    ? res.json({ message: `Post ${postId} successfully deleted` })
+    : res.status(404).json({ error: "No post with the id found" });
 };
 
-module.exports = { newPost, getAllPosts, getPost, editPost, deletePost };
+module.exports = {
+  handleNewPost,
+  listAllPosts,
+  listSinglePost,
+  editPost,
+  deletePost,
+};
