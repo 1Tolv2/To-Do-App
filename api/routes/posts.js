@@ -1,12 +1,12 @@
 const express = require("express");
 const { requireLogin } = require("../controllers/auth");
-const handlePosts = require("../controllers/posts");
+const p = require("../controllers/posts");
 const router = express();
 
-router.get("/", requireLogin, handlePosts.listAllPosts);
-router.post("/", requireLogin, handlePosts.handleNewPost);
-router.get("/:id", requireLogin, handlePosts.listSinglePost);
-router.patch("/:id", requireLogin, handlePosts.editPost);
-router.delete("/:id", requireLogin, handlePosts.deletePost);
+router.get("/", requireLogin, p.listAllPosts);
+router.post("/", requireLogin, p.handleNewPost);
+router.get("/:id", requireLogin, p.listSinglePost);
+router.patch("/:id", requireLogin, p.editPost);
+router.delete("/:id", requireLogin, p.deletePost);
 
 module.exports = router;

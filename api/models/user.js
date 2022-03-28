@@ -28,4 +28,29 @@ userSchema.statics.login = async function (username, password) {
 
 const User = mongoose.model("User", userSchema);
 
+const createUser = async (username, password) => {
+  const user = new User({ username, password });
+  await user.save();
+  return user;
+};
+
+const verifyUser = async (username, password) => {
+  const user = await User.login(username, password);
+  return user;
+};
+
+const getUserByUsername = async (username) => {
+  const user = await User.findOne({ username }, { password: 0 });
+  return user;
+};
+
+const getSingleUser = async (id) => {
+  const user = await User.find(
+    { _id: mongoose.Types.ObjectId(user.userId) },
+    { password: 0 }
+  ).exec();
+  return user;
+};
+
+module.exports = { createUser, verifyUser, getUserByUsername, getSingleUser };
 exports.User = User;
