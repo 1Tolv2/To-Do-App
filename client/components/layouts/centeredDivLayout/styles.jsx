@@ -22,7 +22,7 @@ max-height: 900px;
   transform: translate(-50%, -50%);
   text-align: center;
   color: White;
-  overflow: hidden;
+  overflow-y: hidden;
   h1 {
     font-weight: 300;
     font-size: 2.8em;
