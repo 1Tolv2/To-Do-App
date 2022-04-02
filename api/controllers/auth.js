@@ -33,7 +33,7 @@ const logInUser = async (req, res) => {
       expiresIn: "2h",
       subject: userId,
     });
-    res.json({ token });
+    res.json({ user, token });
   } else {
     res.sendStatus(401);
   }

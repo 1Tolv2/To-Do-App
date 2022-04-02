@@ -36,7 +36,9 @@ const createUser = async (username, password) => {
 
 const verifyUser = async (username, password) => {
   const user = await User.login(username, password);
-  return user;
+  return user
+    ? { _id: user._id, username: user.username, image: user.image }
+    : null;
 };
 
 const getUserByUsername = async (username) => {

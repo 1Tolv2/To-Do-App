@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
+const cors = require("cors");
 require("dotenv").config();
 
 const { PORT } = require("./settings");
@@ -11,6 +12,7 @@ const postRouter = require("./routes/posts");
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 
 app.use((req, res, next) => {
