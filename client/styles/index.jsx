@@ -3,17 +3,17 @@ const colors = {
  greenLight:"",
  greenDark:"",
  mauveMain:"#AD7A99",
- mauveLight:"",
- mauveDark:"",
+ mauveLight:"#ebe0e7",
+ mauveDark:"#6f445e",
  blueMain: "#08B2E3",
  blueLight:"",
  blueDark:"",
  orangeMain: "#FF4E00",
- orangeLight:"",
- orangeDark:"",
+ orangeLight:"#ffdacc",
+ orangeDark:"#992900",
  yellowMain: "#FFED66",
- yellowLight:"",
- yellowDark:"",
+ yellowLight:"#fff9cc",
+ yellowDark:"#e6cb00",
 }
 
  const size = {
