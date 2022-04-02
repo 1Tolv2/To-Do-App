@@ -11,5 +11,6 @@ const Button = styled.button`
   text-transform: uppercase;
   background-color: ${({ bgColor }) => (bgColor ? bgColor : "#23CE6B")};
   color: white;
+  cursor: pointer;
 `;
 export { Button };

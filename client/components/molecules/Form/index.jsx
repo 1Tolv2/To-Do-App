@@ -2,34 +2,32 @@ import React, { useState, useEffect, useContext } from "react";
 import { useRouter } from "next/router";
 import * as s from "./styles";
 import { UserContext } from "../../../pages/_app";
-import { registerUser, logInUser } from "../../API";
+import * as API from "../../API";
 import { MainButton } from "../../atoms/mainButton";
-import BodyRegularText from "../../atoms/bodyRegularText/styles";
+import { BodyRegularText } from "../../atoms/bodyRegularText/index";
 
 export const Form = ({ type, bgColor }) => {
   const {setUserData} = useContext(UserContext)
   const router = useRouter();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   async function handleOnSubmit(e) {
     e.preventDefault();
     if (type === "register") {
-      const res = await registerUser({ username, password });
-      console.log(res)
-      res?.user
-        ? router.push("login")
-        : (setError("Username already taken, try another on"));
+      const res = await API.registerUser({ username, password });
+      res.user ? router.push("login") : setErrorMessage("Username already taken, try another on")
+       
     } else if (type === "logIn") {
-      const {user} = await logInUser({ username, password });
+      const {user} = await API.logInUser({ username, password });
       console.log(user)
 
       if (user) {
         localStorage.setItem("jwttoken", user.token)
         setUserData(user)
         router.push("/")
-      } else setError("Username or password is incorrect, please try again")
+      } else setErrorMessage("Username or password is incorrect, please try again")
     }
   }
 
@@ -55,8 +53,8 @@ export const Form = ({ type, bgColor }) => {
         />
         <img src="/key-svgrepo-com.svg" />
       </s.InputContainer>
-      {/* {console.log(error)} */}
-      {/* {error && (<BodyRegularText type="error">"error"</BodyRegularText>)} */}
+      {errorMessage && <BodyRegularText type="error">{errorMessage}</BodyRegularText>}
+
       <MainButton bgColor={bgColor} fullWidth>
         {type === "register" ? "Register" : "Log in"}
       </MainButton>
