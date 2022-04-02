@@ -7,7 +7,8 @@ const registerUser = async (payload) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
   });
-  return res.ok;
+
+  return await res.json();
 };
 
 const logInUser = async (payload) => {
@@ -16,8 +17,7 @@ const logInUser = async (payload) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
   });
-  const data = await res.json();
-  return data;
+  return await res.json();
 };
 
 export { registerUser, logInUser };

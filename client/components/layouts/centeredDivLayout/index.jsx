@@ -2,8 +2,7 @@ import React from "react";
 import Head from "next/head";
 import * as s from "./styles";
 
-
-export default function CenteredDivLayout({ children }) {
+export const CenteredDivLayout = ({ children }) => {
   return (
     <div>
       <Head>

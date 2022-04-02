@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useRouter } from "next/router";
+import * as s from "./styles";
 import { UserContext } from "../../../pages/_app";
 import { registerUser, logInUser } from "../../API";
 import { MainButton } from "../../atoms/mainButton";
-import * as s from "./styles";
+import BodyRegularText from "../../atoms/bodyRegularText/styles";
 
-export default function Form({ type, bgColor }) {
+export const Form = ({ type, bgColor }) => {
   const {setUserData} = useContext(UserContext)
   const router = useRouter();
   const [username, setUsername] = useState("");
@@ -16,13 +17,17 @@ export default function Form({ type, bgColor }) {
     e.preventDefault();
     if (type === "register") {
       const res = await registerUser({ username, password });
-      res
+      console.log(res)
+      res?.user
         ? router.push("login")
-        : setError("Username already taken, try another on");
+        : (setError("Username already taken, try another on"));
     } else if (type === "logIn") {
-      const user = await logInUser({ username, password });
+      const {user} = await logInUser({ username, password });
+      console.log(user)
+
       if (user) {
         localStorage.setItem("jwttoken", user.token)
+        setUserData(user)
         router.push("/")
       } else setError("Username or password is incorrect, please try again")
     }
@@ -50,7 +55,8 @@ export default function Form({ type, bgColor }) {
         />
         <img src="/key-svgrepo-com.svg" />
       </s.InputContainer>
-      {error && <p>{error}</p>}
+      {/* {console.log(error)} */}
+      {/* {error && (<BodyRegularText type="error">"error"</BodyRegularText>)} */}
       <MainButton bgColor={bgColor} fullWidth>
         {type === "register" ? "Register" : "Log in"}
       </MainButton>
