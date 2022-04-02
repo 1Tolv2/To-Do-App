@@ -15,7 +15,8 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Barlow Condensed";
+  font-size: 2.5em;
+  font-weight: 500;
 }
 
 a {
@@ -25,4 +26,5 @@ a {
 
 * {
   box-sizing: border-box;
+  font-family: "Barlow Condensed";
 }
