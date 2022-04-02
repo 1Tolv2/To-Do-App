@@ -1,41 +1,41 @@
 import styled from "styled-components";
 import { createGlobalStyle } from "styled-components";
+import { theme } from "../../../styles";
 
+const {breakpoints} = theme
 const GlobalCSS = createGlobalStyle`
 body {
-  background-color: black;
-  color: white;
+  background-color: #AD7A99;
+  color: black;
 }
-`
+`;
 
 const Wrapper = styled.div`
-background-color: #414143;
-width: 100%;
-max-width: 475px;
-min-width: 320px;
-height: 100%;
-max-height: 900px;
-
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  color: White;
-  overflow-y: hidden;
-  h1 {
-    font-weight: 300;
-    font-size: 2.8em;
-    top: -120px;
-    left: 0;
-  }
+width: 100vw;
+height: 100vh;
+display: flex;
+flex-direction: column;
+${breakpoints.laptop}{
+display: grid;
+grid-template-columns: 40% 60%;
+}
 `;
 
 const Container = styled.div`
-position: absolute;
-bottom: 0;
-left: 0;
+position: relative;
 width: 100%;
+height: 100%;
+min-height: 500px; 
+border-radius: 0 0 20px 20px;
+padding: 40px 20px;
+background-color: white;
+${breakpoints.laptop}{
+border-radius: 0 20px 20px 0;
+}
+`;
+const ImageContainer = styled.div`
+width: 100%;
+height: 100%;
 `;
 
-export {GlobalCSS, Wrapper, Container };
+export { GlobalCSS, Wrapper, Container,ImageContainer };
