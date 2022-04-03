@@ -39,8 +39,16 @@ const breakpoints = {
     desktopL: `@media (min-width: ${size.desktop})`,
   };
 
+const blockMargins = {
+  none: "0",
+  small: "20px",
+  medium: "40px",
+  large: "80px"
+}
+
   export const theme = {
     breakpoints,
-    colors
+    colors,
+    blockMargins
   }
 
