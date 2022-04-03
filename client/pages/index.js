@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { MainLayout } from "../components/layouts/mainLayout";
 import { NavBar } from "../components/organisms/navBar";
 import { ColoredBoxList } from "../components/organisms/coloredBoxList";
+import { TaskList } from "../components/organisms/taskList";
 
 export default function Home() {
   const router = useRouter();
@@ -18,6 +19,7 @@ export default function Home() {
         <main>
           <h2>My projects</h2>
           <ColoredBoxList></ColoredBoxList>
+          <TaskList></TaskList>
         </main>
       </div>
       <aside>SideSection</aside>
