@@ -6,7 +6,7 @@ import { ColoredBox } from "../../molecules/coloredBox";
 export const ColoredBoxList = () => {
   return (
     <s.Container>
-      <s.ListBox>
+      <s.ListContainer>
         <ul>
           <li>
             <ColoredBox></ColoredBox>
@@ -25,8 +25,8 @@ export const ColoredBoxList = () => {
         </li>
         </ul>
         <s.ListFade></s.ListFade>
-      </s.ListBox>
-        <ColoredBox type="addBox"></ColoredBox>
+      </s.ListContainer>
+        <ColoredBox type="addBox"></ColoredBox> 
     </s.Container>
   );
 };

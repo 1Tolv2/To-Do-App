@@ -18,7 +18,10 @@ const Container = styled.div`
     margin: auto;
   }
   &.addBox {
+    position: absolute;
+    right: 0;
     margin: 0;
+    z-index: 3;
   }
 `;
 

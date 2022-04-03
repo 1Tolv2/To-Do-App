@@ -3,9 +3,10 @@ import { theme } from "../../../styles";
 
 const Container = styled.div`
   position: relative;
-  width: 100%;
   display: flex;
-  flex-direction: row;
+  flex-flow: row wrap;
+  width: 100%;
+  margin-bottom: ${theme.blockMargins.small};
   ul {
     display: flex;
     flex-direction: row;
@@ -32,10 +33,9 @@ const Container = styled.div`
     }
   }
 `;
-const ListBox = styled.div`
+const ListContainer = styled.div`
   position: relative;
-  width: 70%;
-
+  width: 83%;
 `;
 const ListFade = styled.div`
   position: absolute;
@@ -47,4 +47,4 @@ const ListFade = styled.div`
   z-index: 2;
 `;
 
-export { Container, ListBox, ListFade };
+export { Container, ListContainer, ListFade };
