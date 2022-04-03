@@ -17,6 +17,9 @@ const Container = styled.div`
   p {
     margin: auto;
   }
+  &.addBox {
+    margin: 0;
+  }
 `;
 
 const ButtonContainer = styled.div`

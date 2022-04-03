@@ -16,8 +16,9 @@ flex-direction: column;
 width: 100%;
 max-width: 1440px;
 margin: auto;
-${breakpoints.tablet}{
+${breakpoints.tablet} {
 display: grid;
-grid-template-columns: auto auto auto;}
+gap: ${theme.blockMargins.small};
+grid-template-columns: 200px auto 200px; }
 `
 export {GlobalCSS, Wrapper}

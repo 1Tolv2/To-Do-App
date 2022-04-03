@@ -14,6 +14,7 @@ const colors = {
  yellowMain: "#FFED66",
  yellowLight:"#fff9cc",
  yellowDark:"#e6cb00",
+ white: "white"
 }
 
  const size = {
