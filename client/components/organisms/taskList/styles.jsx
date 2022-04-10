@@ -16,12 +16,11 @@ const TableHead = styled.div`
   div {
     display: flex;
     flex-direction: row;
-    h2 {
-      font-size: 1.9em;
+    h3 {
       margin-right: 20px;
       padding: 5px;
       &.active {
-      border-bottom: 2px solid ${theme.colors.greenMain};
+        border-bottom: 2px solid ${theme.colors.greenMain};
       }
     }
   }

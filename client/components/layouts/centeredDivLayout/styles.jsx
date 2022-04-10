@@ -14,7 +14,6 @@ const Wrapper = styled.div`
 width: 100vw;
 height: 100vh;
 width: 100%;
-max-width: 1440px;
 margin: auto;
 display: flex;
 flex-direction: column;
@@ -28,12 +27,14 @@ const Container = styled.div`
 position: relative;
 width: 100%;
 height: 100%;
+
 min-height: 500px; 
 border-radius: 0 0 20px 20px;
 padding: 40px 20px;
 background-color: white;
 ${breakpoints.laptop}{
 border-radius: 0 20px 20px 0;
+max-width: 500px;
 }
 ${breakpoints.laptopL} {
 border-radius: 20px;

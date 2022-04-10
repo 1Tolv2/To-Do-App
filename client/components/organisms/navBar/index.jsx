@@ -16,7 +16,7 @@ export const NavBar = () => {
         <s.ListItem>
           <img src="/lock-svgrepo-com.svg" />
           <Link href="/">
-            <a>Projects</a>
+            <a>Tags</a>
           </Link>
         </s.ListItem>
         <s.ListItem>

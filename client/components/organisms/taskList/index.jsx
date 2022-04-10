@@ -6,9 +6,9 @@ export const TaskList = () => {
     <s.Container>
       <s.TableHead>
         <div>
-          <h2 className="active">To-Do</h2>
-          <h2>In Progress</h2>
-          <h2>Done</h2>
+          <h3 className="active">To-Do</h3>
+          <h3>In Progress</h3>
+          <h3>Done</h3>
         </div>
         <div>
           <button><img src="/lock-svgrepo-com.svg" /></button>

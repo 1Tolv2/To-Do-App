@@ -17,7 +17,7 @@ export default function Home() {
       <div>
         <h1>Welcome back!</h1>
         <main>
-          <h2>My projects</h2>
+          <h2>My Tags</h2>
           <ColoredBoxList></ColoredBoxList>
           <TaskList></TaskList>
         </main>
