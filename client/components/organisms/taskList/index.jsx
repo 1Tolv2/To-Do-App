@@ -7,7 +7,7 @@ import {TaskContext} from '../../../pages/_app'
 
 export const TaskList = () => {
   const {taskData, setTaskData} = useContext(TaskContext)
-  const [detailedMenu, setDetailedMenu] = useState(false)
+  const [detailedList, setDetailedList] = useState(false)
 
   useEffect(async ()=> {
     const data = await fetchTasks()
@@ -15,7 +15,7 @@ export const TaskList = () => {
   }, [])
 
   const toggleMenuType = () => {
-setDetailedMenu(!detailedMenu)
+setDetailedList(!detailedList)
   }
   return (
     <s.Container>
@@ -27,8 +27,8 @@ setDetailedMenu(!detailedMenu)
         </div>
         <div>
           <div>
-            <button className={detailedMenu ? "" : "active"} onClick={toggleMenuType}><Image width="100" height="100" src="/menu-svgrepo-com.svg" /></button>
-            <button className={detailedMenu ? "active" : ""} onClick={toggleMenuType}><Image width="100" height="100" src="/detailed-menu-svgrepo-com.svg"/></button>
+            <button className={detailedList ? "" : "active"} onClick={toggleMenuType}><Image width="100" height="100" src="/menu-svgrepo-com.svg" /></button>
+            <button className={detailedList ? "active" : ""} onClick={toggleMenuType}><Image width="100" height="100" src="/detailed-menu-svgrepo-com.svg"/></button>
           </div>
           {/* <label for="filters">Filter: </label> */}
           <select name="filters" id="filters" placeholder="Filter">
@@ -38,7 +38,7 @@ setDetailedMenu(!detailedMenu)
         </div>
       </s.TableHead>
       <s.List>
-        <Task taskList={taskData} detailedMenu={detailedMenu}></Task>
+        <Task taskList={taskData} detailedList={detailedList}></Task>
       </s.List>
     </s.Container>
   );

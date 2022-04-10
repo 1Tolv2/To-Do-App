@@ -24,6 +24,20 @@ const TableHead = styled.div`
       }
     }
   }
+  button {
+    width: 45px;
+    height: 45px;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: white;
+    &.active {
+      background-color: #ccc;
+    }
+    img {
+      height: 30px !important;
+    }
+  }
 `;
 
 const List = styled.ul`

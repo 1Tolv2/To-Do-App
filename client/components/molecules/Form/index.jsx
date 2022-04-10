@@ -18,13 +18,11 @@ export const Form = ({ type, bgColor }) => {
     if (type === "register") {
       const res = await API.registerUser({ username, password });
       res.user ? router.push("login") : setErrorMessage("Username already taken, try another on")
-       
     } else if (type === "logIn") {
-      const {user} = await API.logInUser({ username, password });
-      console.log(user)
+      const {user, token} = await API.logInUser({ username, password });
 
       if (user) {
-        localStorage.setItem("jwttoken", user.token)
+        localStorage.setItem("jwttoken", token)
         setUserData(user)
         router.push("/")
       } else setErrorMessage("Username or password is incorrect, please try again")
