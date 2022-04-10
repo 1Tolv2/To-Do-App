@@ -8,10 +8,11 @@ const {
 } = require("../models/post");
 
 const handleNewPost = async (req, res) => {
-  const { title, body } = req.body;
+  const { title, description, body, tags } = req.body;
+  console.log(tags);
   const userId = req.user.userId;
-  const post = await createPost(userId, title, body);
-  res.json({ post });
+  const data = await createPost(userId, title, description, body, tags);
+  res.json({ data });
 };
 
 const listAllPosts = async (req, res) => {

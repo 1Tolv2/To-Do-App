@@ -19,7 +19,7 @@ const registerNewUser = async (req, res) => {
     } else {
       const user = await createUser(username.toLowerCase(), password);
 
-      res.json({ user: user.username });
+      res.json({ user: { username: user.username } });
     }
   }
 };
