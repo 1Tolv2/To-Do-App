@@ -1,19 +1,31 @@
-import React from 'react'
+import React from "react";
 
+const Task = ({ taskList, isDetailedList }) => {
+  console.log(taskList);
+  const regularTask = (item) => {
+    console.log(item);
+    return (
+      <li>
+        <h4>{item.title}</h4>
+        <p>{item.description}</p>
+      </li>
+    );
+  };
 
-
-const Task = ({taskList, detailedList}) => {
-  console.log(taskList)
-  const regularTask = () => {
-  return <li>Task</li>
-}
-
-const detailedTask = () => {
-  return <li>Detailed task</li>
-}
+  const detailedTask = (item) => {
+    return (
+      <li>
+        <h4>{item.title}</h4>
+        <p>{item.description}</p>
+        <p>{item.body}</p>
+      </li>
+    );
+  };
   return (
-    detailedList ? detailedTask() : regularTask()
-  )
-}
+    taskList &&
+    taskList.map((item) => isDetailedList ? detailedTask(item) : regularTask(item)
+    )
+  );
+};
 
-export default Task
+export default Task;
