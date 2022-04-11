@@ -1,31 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { MainButton } from "../../atoms/mainButton";
 import * as s from "./styles";
+import Image from "next/image";
 
-export const NavBar = () => {
+export const NavBar = ({state}) => {
+const {newTaskModal, setNewTaskModal} = state
+function toggleTaskModal() {
+  setNewTaskModal(!newTaskModal)
+}
   return (
     <s.NavContainer>
       <s.List>
         <s.ListItem>
-          <img src="/lock-svgrepo-com.svg" />
+          <Image height="50" width="50" src="/lock-svgrepo-com.svg" />
           <Link href="/">
             <a>Dashboard</a>
           </Link>
         </s.ListItem>
         <s.ListItem>
-          <img src="/lock-svgrepo-com.svg" />
+          <Image height="50" width="50" src="/lock-svgrepo-com.svg" />
           <Link href="/">
             <a>Tags</a>
           </Link>
         </s.ListItem>
         <s.ListItem>
-          <img src="/lock-svgrepo-com.svg" />
+          <Image height="50" width="50" src="/lock-svgrepo-com.svg" />
           <Link href="/">
             <a>Tasks</a>
           </Link>
         </s.ListItem>
       </s.List>
+      <MainButton type="filled" bgColor="greenMain" fullWidth event={toggleTaskModal}>
+        Add task
+      </MainButton>
       <MainButton type="inverted" bgColor="orangeMain" fullWidth>
         Log out
       </MainButton>
