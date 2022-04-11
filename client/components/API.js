@@ -34,4 +34,18 @@ const fetchTasks = async () => {
   return data;
 };
 
-export { registerUser, logInUser, fetchTasks };
+const createTask = async (payload) => {
+  const token = localStorage.getItem("jwttoken");
+  const res = await fetch(`${APIURL}/posts`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(payload),
+  });
+  const data = await res.json();
+  return data;
+};
+
+export { registerUser, logInUser, fetchTasks, createTask };
