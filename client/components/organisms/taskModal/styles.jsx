@@ -27,6 +27,21 @@ background-color: white;
 border-radius: 5px;
 padding: 20px;
 z-index: 4;
+textarea {
+  width: 100%;
+  height: 200px;
+  background-color: #e6e6e6;
+  border-radius: 7px;
+  margin: 10px 0;
+  padding: 10px 0 10px 10px;
+  border: none;
+  color: black;
+  font-size: 1.1em;
+  resize: none;
+  :focus {
+    outline: none;
+  }
+}
 `
 
 export {Container, Overlay, Modal}

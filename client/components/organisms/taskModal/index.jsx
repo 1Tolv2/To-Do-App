@@ -17,7 +17,7 @@ const TaskModal = ({ state }) => {
   }
   return (
     <s.Container>
-      <s.Overlay></s.Overlay>
+      <s.Overlay onClick={() => setNewTaskModal(false)}></s.Overlay>
       <s.Modal>
         <form>
           <InputField
@@ -38,8 +38,9 @@ const TaskModal = ({ state }) => {
           id="body"
           value={body}
           onChange={(e) => setBody(e.target.value)}
+          placeholder="Detailed description..."
           ></textarea>
-          <MainButton event={handleOnSubmit}>Add</MainButton>
+          <MainButton fullWidth event={handleOnSubmit}>Add</MainButton>
         </form>
       </s.Modal>
     </s.Container>
