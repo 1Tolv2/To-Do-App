@@ -10,6 +10,8 @@ export const TaskList = () => {
   const { taskData, setTaskData } = useContext(TaskContext);
   const router = useRouter()
   const [isDetailedList, setIsDetailedList] = useState(false);
+  const [displayDone, setDisplayDone] = useState(false);
+
 
   useEffect(async () => {
     const token = localStorage.getItem("jwttoken");
@@ -23,13 +25,17 @@ export const TaskList = () => {
   const toggleMenuType = () => {
     setIsDetailedList(!isDetailedList);
   };
+
+  const toggleDisplayDone = () => {
+    setDisplayDone(!displayDone);
+  }
   return (
     <s.Container>
       <s.TableHead>
         <div>
-          <h3 className="active">To-Do</h3>
-          <h3>In Progress</h3>
-          <h3>Done</h3>
+          <h3 className={displayDone ? "" : "active"} onClick={toggleDisplayDone}>To-Do</h3>
+          {/* <h3>In Progress</h3> */}
+          <h3 className={displayDone ? "active" : ""} onClick={toggleDisplayDone}>Done</h3>
         </div>
         <div>
           <div>
@@ -51,14 +57,14 @@ export const TaskList = () => {
             </button>
           </div>
           {/* <label for="filters">Filter: </label> */}
-          <select name="filters" id="filters" placeholder="Filter">
+          {/* <select name="filters" id="filters" placeholder="Filter">
             <option>filter 1</option>
             <option>filter 2</option>
-          </select>
+          </select> */}
         </div>
       </s.TableHead>
       <s.List>
-        <Task taskList={taskData} isDetailedList={isDetailedList}></Task>
+        <Task taskList={taskData} isDetailedList={isDetailedList} displayDone={displayDone}></Task>
       </s.List>
     </s.Container>
   );

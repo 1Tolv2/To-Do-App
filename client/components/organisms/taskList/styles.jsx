@@ -22,6 +22,7 @@ const TableHead = styled.div`
       &.active {
         border-bottom: 2px solid ${theme.colors.greenMain};
       }
+      cursor: pointer;
     }
   }
   button {
