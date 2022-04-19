@@ -6,7 +6,7 @@ const postSchema = new mongoose.Schema(
     title: { type: String, required: true, default: "Unknown" },
     description: { type: String, default: "" },
     body: { type: String, default: "" },
-    status: { type: String },
+    status: { type: Boolean, default: false },
     tags: [{ type: String, default: [] }],
     files: { type: String },
   },

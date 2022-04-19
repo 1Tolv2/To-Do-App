@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const { addExpiredToken } = require("../models/expiredToken");
 const { verifyUser, createUser, getUserByUsername } = require("../models/user");
 const JWT_SECRET = process.env.JWT_SECRET;
 
@@ -39,4 +40,12 @@ const logInUser = async (req, res) => {
   }
 };
 
-module.exports = { requireLogin, registerNewUser, logInUser };
+const logOutUser = async (req, res) => {
+  const token = req.header("Authorization").split(" ")[1];
+  if (req.user) {
+    await addExpiredToken(token);
+    res.json({ message: "Token expired successfully" });
+  }
+};
+
+module.exports = { requireLogin, registerNewUser, logInUser, logOutUser };
