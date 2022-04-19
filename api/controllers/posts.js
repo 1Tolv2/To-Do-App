@@ -9,6 +9,7 @@ const {
 
 const handleNewPost = async (req, res) => {
   const { title, description, body, tags } = req.body;
+  console.log();
   const userId = req.user.userId;
   const data = await createPost(userId, title, description, body, tags);
   res.json({ data });
@@ -35,6 +36,15 @@ const editPost = async (req, res) => {
     : res.status(404).json({ error: "No post with that id found" });
 };
 
+const toggleDoneOnPost = async (req, res) => {
+  const postId = req.params.id;
+  const { status } = req.body;
+  const data = await toggleDone(postId, status);
+  data.modifiedCount > 0
+    ? res.json({ message: "Post successfully updated" })
+    : res.status(404).json({ error: "No post with that id found" });
+};
+
 const deletePost = async (req, res) => {
   const postId = req.params.id;
   const { userId } = req.user;
@@ -50,4 +60,5 @@ module.exports = {
   listSinglePost,
   editPost,
   deletePost,
+  toggleDoneOnPost,
 };

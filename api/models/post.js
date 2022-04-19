@@ -6,7 +6,7 @@ const postSchema = new mongoose.Schema(
     title: { type: String, required: true, default: "Unknown" },
     description: { type: String, default: "" },
     body: { type: String, default: "" },
-    status: { type: Boolean, default: false },
+    done: { type: Boolean, default: false },
     tags: [{ type: String, default: [] }],
     files: { type: String },
   },
@@ -60,11 +60,22 @@ const deleteSinglePost = async (postId, userId) => {
   return data;
 };
 
+const toggleDone = async (postId, status) => {
+  const data = await Post.updateOne(
+    {
+      _id: mongoose.Types.ObjectId(postId),
+    },
+    { done: !status }
+  );
+  return data;
+};
+
 module.exports = {
   createPost,
   getAllPosts,
   getSinglePost,
   updateSinglePost,
   deleteSinglePost,
+  toggleDone,
 };
 exports.Post = Post;
