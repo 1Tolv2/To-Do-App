@@ -21,8 +21,7 @@ const logInUser = async (payload) => {
   return data;
 };
 
-const fetchTasks = async () => {
-  const token = localStorage.getItem("jwttoken");
+const fetchTasks = async (token) => {
   const res = await fetch(`${APIURL}/posts`, {
     method: "GET",
     headers: {
@@ -48,4 +47,17 @@ const createTask = async (payload) => {
   return data;
 };
 
-export { registerUser, logInUser, fetchTasks, createTask };
+const logOutUser = async () => {
+  const token = localStorage.getItem("jwttoken");
+
+  const res = await fetch(`${APIURL}/auth/api-token`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return res;
+};
+
+export { registerUser, logInUser, fetchTasks, createTask, logOutUser };

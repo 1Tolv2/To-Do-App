@@ -8,7 +8,6 @@ const InputContainer = styled.div`
   border-radius: 7px;
   margin: 10px 0;
   padding: 10px 0 10px 10px;
-
   img {
     position: absolute;
     top: 10px;

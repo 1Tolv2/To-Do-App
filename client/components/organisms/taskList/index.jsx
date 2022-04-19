@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import {useRouter} from 'next/router'
 import Image from "next/image";
 import * as s from "./styles";
 import { fetchTasks } from "../../API";
@@ -7,11 +8,16 @@ import { TaskContext } from "../../../pages/_app";
 
 export const TaskList = () => {
   const { taskData, setTaskData } = useContext(TaskContext);
+  const router = useRouter()
   const [isDetailedList, setIsDetailedList] = useState(false);
 
   useEffect(async () => {
-    const data = await fetchTasks();
-    setTaskData(data.data);
+    const token = localStorage.getItem("jwttoken");
+    if (!token) {
+      router.push("/login");
+    } else {
+    const data = await fetchTasks(token);
+    setTaskData(data.data);}
   }, []);
 
   const toggleMenuType = () => {

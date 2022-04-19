@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { TaskContext } from "../../../pages/_app";
 import InputField from "../../atoms/inputField";
 import { MainButton } from "../../atoms/mainButton";
-import { createTask } from '../../API'
+import { createTask, fetchTasks } from '../../API'
 import * as s from "./styles";
+
 const TaskModal = ({ state }) => {
-  const { newTaskModal, setNewTaskModal } = state;
+  const { setNewTaskModal } = state;
+  const {setTaskData} = useContext(TaskContext)
   const [description, setDescription] = useState(null);
   const [title, setTitle] = useState(null);
   const [body, setBody] = useState(null);
@@ -13,7 +16,10 @@ const TaskModal = ({ state }) => {
   async function handleOnSubmit(e) {
       e.preventDefault()
       const payload = {description, title, body}
-      const data = await createTask(payload)
+      await createTask(payload)
+      const {data} = await fetchTasks()
+      setTaskData(data)
+      setNewTaskModal(false)
   }
   return (
     <s.Container>
