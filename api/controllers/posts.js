@@ -5,6 +5,7 @@ const {
   getSinglePost,
   updateSinglePost,
   deleteSinglePost,
+  toggleDone,
 } = require("../models/post");
 
 const handleNewPost = async (req, res) => {
@@ -30,7 +31,6 @@ const editPost = async (req, res) => {
   const { userId } = req.user;
   const postId = req.params.id;
   const data = await updateSinglePost(userId, postId, req.body);
-  console.log(data);
   data.modifiedCount > 0
     ? res.json({ message: "Post successfully updated" })
     : res.status(404).json({ error: "No post with that id found" });
@@ -38,8 +38,7 @@ const editPost = async (req, res) => {
 
 const toggleDoneOnPost = async (req, res) => {
   const postId = req.params.id;
-  const { status } = req.body;
-  const data = await toggleDone(postId, status);
+  const data = await toggleDone(postId);
   data.modifiedCount > 0
     ? res.json({ message: "Post successfully updated" })
     : res.status(404).json({ error: "No post with that id found" });

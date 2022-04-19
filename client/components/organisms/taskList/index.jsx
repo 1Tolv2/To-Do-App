@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import {useRouter} from 'next/router'
 import Image from "next/image";
 import * as s from "./styles";
-import { fetchTasks } from "../../API";
+import { fetchTasks, toggleTaskStatus } from "../../API";
 import Task from "../../molecules/task";
 import { TaskContext } from "../../../pages/_app";
 
@@ -29,12 +29,16 @@ export const TaskList = () => {
   const toggleDisplayDone = () => {
     setDisplayDone(!displayDone);
   }
+
+  const toggleStatus = async(e) => {
+  const res = await toggleTaskStatus(e.target.id)
+  res.ok && router.reload(window.location.pathname)
+  }
   return (
     <s.Container>
       <s.TableHead>
         <div>
           <h3 className={displayDone ? "" : "active"} onClick={toggleDisplayDone}>To-Do</h3>
-          {/* <h3>In Progress</h3> */}
           <h3 className={displayDone ? "active" : ""} onClick={toggleDisplayDone}>Done</h3>
         </div>
         <div>
@@ -64,7 +68,7 @@ export const TaskList = () => {
         </div>
       </s.TableHead>
       <s.List>
-        <Task taskList={taskData} isDetailedList={isDetailedList} displayDone={displayDone}></Task>
+        <Task taskList={taskData} isDetailedList={isDetailedList} displayDone={displayDone} toggleStatus={toggleStatus}></Task>
       </s.List>
     </s.Container>
   );

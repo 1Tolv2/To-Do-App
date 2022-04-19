@@ -23,7 +23,7 @@ const createPost = async (id, title, description, body, tags) => {
 
 const getAllPosts = async (id) => {
   const data = await Post.find({ author: mongoose.Types.ObjectId(id) })
-    .sort({ updatedAt: -1 })
+    .sort({ createdAt: -1 })
     .exec();
   return data;
 };
@@ -60,12 +60,19 @@ const deleteSinglePost = async (postId, userId) => {
   return data;
 };
 
-const toggleDone = async (postId, status) => {
+const toggleDone = async (postId) => {
+  const post = await Post.findOne({
+    _id: mongoose.Types.ObjectId(postId),
+  });
   const data = await Post.updateOne(
     {
       _id: mongoose.Types.ObjectId(postId),
     },
-    { done: !status }
+    {
+      $set: {
+        done: !post.done,
+      },
+    }
   );
   return data;
 };

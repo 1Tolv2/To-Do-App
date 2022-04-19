@@ -1,40 +1,53 @@
 import React from "react";
+import * as s from "./styles";
 
-const Task = ({ taskList, isDetailedList, displayDone }) => {
+const Task = ({ taskList, isDetailedList, displayDone, toggleStatus }) => {
   const regularTask = (item) => {
     return (
-      <li>
-        <h4>{item.title}</h4>
-        <p>{item.description}</p>
-      </li>
+      <s.Container id={item._id} key={item._id}>
+        <s.InfoContainer>
+          <h4>{item.title}</h4>
+          <p>{item.description}</p>
+        </s.InfoContainer>
+        <input type="checkbox" id={item._id} onChange={toggleStatus} />
+        <i>{item.createdAt.split("T")[0]} - {item.createdAt.split("T")[1].split(".")[0]}</i>
+      </s.Container>
     );
   };
 
   const detailedTask = (item) => {
     return (
-      <li>
-        <h4>{item.title}</h4>
-        <p>{item.description}</p>
-        <p>{item.body}</p>
-      </li>
+      <s.Container id={item._id} key={item._id}>
+        <s.InfoContainer>
+          <h4>{item.title}</h4>
+          <p>{item.description}</p>
+          <p>{item.body}</p>
+        </s.InfoContainer>
+        <input type="checkbox" id={item._id} onChange={toggleStatus} />
+      </s.Container>
     );
   };
 
   const finishedTasks = (item) => {
     if (item.done) {
-     return isDetailedList ? detailedTask(item) : regularTask(item)} else {return}
-  }
+      return isDetailedList ? detailedTask(item) : regularTask(item);
+    } else {
+      return;
+    }
+  };
   const toDoTasks = (item) => {
     if (item.done) {
-      return
+      return;
     } else {
-    return isDetailedList ? detailedTask(item) : regularTask(item)}
-  }
+      return isDetailedList ? detailedTask(item) : regularTask(item);
+    }
+  };
 
   return (
     taskList &&
-    taskList.map((item) => displayDone ? finishedTasks(item) : toDoTasks(item))
-    // taskList.map((item) => isDetailedList ? detailedTask(item) : regularTask(item))
+    taskList.map((item) =>
+      displayDone ? finishedTasks(item) : toDoTasks(item)
+    )
   );
 };
 

@@ -21,7 +21,9 @@ const logInUser = async (payload) => {
   return data;
 };
 
-const fetchTasks = async (token) => {
+const fetchTasks = async () => {
+  const token = localStorage.getItem("jwttoken");
+
   const res = await fetch(`${APIURL}/posts`, {
     method: "GET",
     headers: {
@@ -44,6 +46,7 @@ const createTask = async (payload) => {
     body: JSON.stringify(payload),
   });
   const data = await res.json();
+  console.log(data);
   return data;
 };
 
@@ -84,6 +87,16 @@ const editUser = async (payload) => {
   return data;
 };
 
+const toggleTaskStatus = async (id) => {
+  const token = localStorage.getItem("jwttoken");
+  return await fetch(`${APIURL}/posts/${id}/status`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
+
 export {
   APIURL,
   registerUser,
@@ -93,4 +106,5 @@ export {
   logOutUser,
   editUser,
   fetchUser,
+  toggleTaskStatus,
 };
