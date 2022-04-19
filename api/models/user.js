@@ -5,9 +5,12 @@ const userSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   image: { type: String, default: "blabla" },
-  name: { type: String },
-  email: { type: String },
-  settings: { name: { type: Boolean }, email: { type: Boolean } },
+  name: { type: String, default: "" },
+  email: { type: String, default: "" },
+  settings: {
+    name: { type: Boolean, default: false },
+    email: { type: Boolean, default: false },
+  },
 });
 
 // overwrites the password sent in with an encrypted version
@@ -37,7 +40,14 @@ const createUser = async (username, password) => {
 const verifyUser = async (username, password) => {
   const user = await User.login(username, password);
   return user
-    ? { _id: user._id, username: user.username, image: user.image }
+    ? {
+        _id: user._id,
+        username: user.username,
+        name: user.name,
+        image: user.image,
+        email: user.email,
+        settings: user.settings,
+      }
     : null;
 };
 
@@ -48,11 +58,34 @@ const getUserByUsername = async (username) => {
 
 const getSingleUser = async (id) => {
   const user = await User.find(
-    { _id: mongoose.Types.ObjectId(user.userId) },
+    { _id: mongoose.Types.ObjectId(id) },
     { password: 0 }
   ).exec();
   return user;
 };
 
-module.exports = { createUser, verifyUser, getUserByUsername, getSingleUser };
+const updateUser = async (id, payload, image) => {
+  return await User.updateOne(
+    { _id: mongoose.Types.ObjectId(id) },
+    {
+      $set: {
+        name: payload.name,
+        email: payload.email,
+        image,
+        settings: {
+          name: payload.setting_name,
+          email: payload.setting_email,
+        },
+      },
+    }
+  );
+};
+
+module.exports = {
+  createUser,
+  verifyUser,
+  getUserByUsername,
+  getSingleUser,
+  updateUser,
+};
 exports.User = User;

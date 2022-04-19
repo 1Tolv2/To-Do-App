@@ -2,16 +2,26 @@ const express = require("express");
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const cors = require("cors");
+const multer = require("multer");
 require("dotenv").config();
 
 const { PORT } = require("./settings");
-const JWT_SECRET = process.env.JWT_SECRET;
 const authRouter = require("./routes/auth");
 const userRouter = require("./routes/users");
 const postRouter = require("./routes/posts");
 
 const app = express();
-
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "./uploads");
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  },
+});
+const upload = multer({ storage: storage });
+app.use(upload.single("image"));
+app.use("/uploads", express.static("./uploads"));
 app.use(cors());
 app.use(express.json());
 

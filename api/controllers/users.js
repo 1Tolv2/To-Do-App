@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const { getSingleUser } = require("../models/user");
+const { getSingleUser, updateUser } = require("../models/user");
 
 const listCurrentUser = async (req, res) => {
   const id = req.user.userId;
@@ -24,4 +24,11 @@ const listCurrentUser = async (req, res) => {
 //   res.json({ data });
 // };
 
-module.exports = { listCurrentUser };
+const editUserSettings = async (req, res) => {
+  console.log(req.body);
+  const response = await updateUser(req.user.userId, req.body, req?.file?.path);
+  console.log(response);
+  res.json({ message: "Successfully changed settings" });
+};
+
+module.exports = { listCurrentUser, editUserSettings };
