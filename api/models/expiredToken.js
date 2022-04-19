@@ -15,4 +15,8 @@ const addExpiredToken = async (token) => {
   });
 };
 
-module.exports = { addExpiredToken };
+const findExpiredToken = async (token) => {
+  return await ExpToken.findOne({ token });
+};
+
+module.exports = { addExpiredToken, findExpiredToken };
