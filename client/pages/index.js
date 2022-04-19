@@ -1,18 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useRouter } from "next/router";
+import { UserContext } from "./_app";
 import { MainLayout } from "../components/layouts/mainLayout";
 import { NavBar } from "../components/organisms/navBar";
 import { ColoredBoxList } from "../components/organisms/coloredBoxList";
 import { TaskList } from "../components/organisms/taskList";
 import TaskModal from "../components/organisms/taskModal";
+import { fetchUser } from "../components/API";
 
 export default function Home() {
+  const { userData, setUserData } = useContext(UserContext);
   const [newTaskModal, setNewTaskModal] = useState(false);
+
+  const getUser = async () => {
+    return setUserData((await fetchUser()).data[0]);
+  };
 
   const router = useRouter();
   useEffect(() => {
     const token = localStorage.getItem("jwttoken");
-    !token && router.push("/login");
+    token ? getUser() : router.push("/login");
   }, []);
   return (
     <MainLayout>

@@ -60,4 +60,37 @@ const logOutUser = async () => {
   return res;
 };
 
-export { registerUser, logInUser, fetchTasks, createTask, logOutUser };
+const fetchUser = async () => {
+  const token = localStorage.getItem("jwttoken");
+  const res = await fetch(`${APIURL}/users`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return await res.json();
+};
+
+const editUser = async (payload) => {
+  const token = localStorage.getItem("jwttoken");
+  const res = await fetch(`${APIURL}/users`, {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    body: payload,
+  });
+  const data = await res.json();
+  return data;
+};
+
+export {
+  APIURL,
+  registerUser,
+  logInUser,
+  fetchTasks,
+  createTask,
+  logOutUser,
+  editUser,
+  fetchUser,
+};

@@ -8,6 +8,13 @@ height: 100vh;
 width: 100%;
 padding: 40px 20px;
 background-color: white;
+h2{
+    text-align: center;
+}
+img {
+    width: 100%;
+    height: auto;
+}
 `
 
 const List = styled.ul`
