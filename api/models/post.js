@@ -77,6 +77,17 @@ const toggleDone = async (postId) => {
   return data;
 };
 
+const getTags = async () => {
+  const tags = await Post.distinct("tags").exec();
+  console.log(tags);
+  return tags;
+};
+
+const getAllPostsByTag = async (tag) => {
+  const data = await Post.find({ tags: tag }).exec();
+  return data;
+};
+
 module.exports = {
   createPost,
   getAllPosts,
@@ -84,5 +95,7 @@ module.exports = {
   updateSinglePost,
   deleteSinglePost,
   toggleDone,
+  getTags,
+  getAllPostsByTag,
 };
 exports.Post = Post;
