@@ -1,32 +1,44 @@
 import React, { useContext, useEffect, useState } from "react";
-import {useRouter} from 'next/router'
+import { useRouter } from "next/router";
 import Image from "next/image";
-import * as s from "./styles";
+import { TaskContext } from "../../../pages/_app";
 import { fetchTasks, toggleTaskStatus } from "../../API";
 import Task from "../../molecules/task";
-import { TaskContext } from "../../../pages/_app";
-
+import * as s from "./styles";
 export const TaskList = () => {
+  const router = useRouter();
   const { taskData, setTaskData } = useContext(TaskContext);
-  const router = useRouter()
   const [isDetailedList, setIsDetailedList] = useState(false);
-  const [taskList, setTaskList] = useState(null)
+  const [taskList, setTaskList] = useState(null);
   const [displayDone, setDisplayDone] = useState(false);
+  const [reload, setReload] = useState(false);
 
+  const getTaskList = async () => {
+    const { data } = await fetchTasks();
+    return data;
+  };
 
   useEffect(async () => {
     const token = localStorage.getItem("jwttoken");
     if (!token) {
       router.push("/login");
     } else {
-    const {data} = await fetchTasks(token);
-    setTaskData(data)
-    setTaskList(data)}
-  }, []);
+      const data = await getTaskList();
+      setTaskData(data);
+      router.query.tag ? filterTaskList(data) : setTaskList(data);
+
+    }
+  }, [reload]);
+
+  const filterTaskList = (data) => {
+    return setTaskList(
+      data.filter((item) => item.tags.includes(router.query.tag))
+    );
+  };
 
   useEffect(() => {
-router.query.tag && taskList && setTaskList(taskData.filter((item)=>item.tags.includes(router.query.tag)))
-  }, [router.query.tag])
+    router.query.tag && taskList && filterTaskList(taskData);
+  }, [router.query.tag]);
 
   const toggleMenuType = () => {
     setIsDetailedList(!isDetailedList);
@@ -34,18 +46,29 @@ router.query.tag && taskList && setTaskList(taskData.filter((item)=>item.tags.in
 
   const toggleDisplayDone = () => {
     setDisplayDone(!displayDone);
-  }
+  };
 
-  const toggleStatus = async(e) => {
-  const res = await toggleTaskStatus(e.target.id)
-  res.ok && router.reload(window.location.pathname)
-  }
+  const toggleStatus = async (e) => {
+    const res = await toggleTaskStatus(e.target.id);
+    res.ok && setReload(!reload);
+
+  };
   return (
     <s.Container>
       <s.TableHead>
         <div>
-          <h3 className={displayDone ? "" : "active"} onClick={toggleDisplayDone}>To-Do</h3>
-          <h3 className={displayDone ? "active" : ""} onClick={toggleDisplayDone}>Done</h3>
+          <h3
+            className={displayDone ? "" : "active"}
+            onClick={toggleDisplayDone}
+          >
+            To-Do
+          </h3>
+          <h3
+            className={displayDone ? "active" : ""}
+            onClick={toggleDisplayDone}
+          >
+            Done
+          </h3>
         </div>
         <div>
           <div>
@@ -66,15 +89,15 @@ router.query.tag && taskList && setTaskList(taskData.filter((item)=>item.tags.in
               />
             </button>
           </div>
-          {/* <label for="filters">Filter: </label> */}
-          {/* <select name="filters" id="filters" placeholder="Filter">
-            <option>filter 1</option>
-            <option>filter 2</option>
-          </select> */}
         </div>
       </s.TableHead>
       <s.List>
-        <Task taskList={taskList} isDetailedList={isDetailedList} displayDone={displayDone} toggleStatus={toggleStatus}></Task>
+        <Task
+          taskList={taskList}
+          isDetailedList={isDetailedList}
+          displayDone={displayDone}
+          toggleStatus={toggleStatus}
+        ></Task>
       </s.List>
     </s.Container>
   );
