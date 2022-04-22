@@ -1,7 +1,7 @@
 const { getTags, getAllPostsByTag } = require("../models/post");
 
 const getAllTags = async (req, res) => {
-  const data = await getTags();
+  const data = await getTags(req.user.userId);
   res.json({ data });
 };
 

@@ -77,8 +77,10 @@ const toggleDone = async (postId) => {
   return data;
 };
 
-const getTags = async () => {
-  const tags = await Post.distinct("tags").exec();
+const getTags = async (id) => {
+  const tags = await Post.distinct("tags", {
+    author: mongoose.Types.ObjectId(id),
+  }).exec();
   console.log(tags);
   return tags;
 };
