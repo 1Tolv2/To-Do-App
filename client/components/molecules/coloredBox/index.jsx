@@ -13,7 +13,7 @@ export const ColoredBox = ({ type, taskData, tagData }) => {
           <MainButton type="round">+</MainButton>
         </s.Container>
       ) : (
-        <Link href="/tags/"><a><s.Container bgColor="white">
+        <Link href={`/tags/${tagData}`}><a><s.Container bgColor="white">
             <h4>{tagData}</h4>
             <p>{taskData.length} task remaining</p>
         </s.Container></a></Link>

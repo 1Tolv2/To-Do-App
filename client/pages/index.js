@@ -22,20 +22,11 @@ export default function Home() {
     token ? getUser() : router.push("/login");
   }, []);
   return (
-    <MainLayout>
-      <NavBar state={{ newTaskModal, setNewTaskModal }}></NavBar>
-      <div>
-        {userData ? <h1>Welcome {userData.username}!</h1> : <h1>Welcome!</h1>}
-        <main>
-          <h2>My Tags</h2>
-          <ColoredBoxList></ColoredBoxList>
-          <TaskList></TaskList>
-          {newTaskModal && (
-            <TaskModal state={{ newTaskModal, setNewTaskModal }} />
-          )}
-        </main>
-      </div>
-      <aside>SideSection</aside>
+    <MainLayout state={{ newTaskModal, setNewTaskModal }}>
+      <h2>Tags</h2>
+      <ColoredBoxList></ColoredBoxList>
+      <TaskList></TaskList>
+      {newTaskModal && <TaskModal state={{ newTaskModal, setNewTaskModal }} />}
     </MainLayout>
   );
 }

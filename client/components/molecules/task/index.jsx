@@ -8,26 +8,30 @@ const Task = ({ taskList, isDetailedList, displayDone, toggleStatus }) => {
       <s.Container id={item._id} key={item._id}>
         <s.InfoContainer>
           <h4>{item.title}</h4>
-          <p>{item.description}</p>
+          <h5>{item.description}</h5>
         </s.InfoContainer>
+        <s.TagContainer>
+      {item.tags.length > 0 && item.tags.map((tag) => <li>{tag}</li>)}
+        </s.TagContainer>
+        <i>{item.createdAt.split("T")[0]} {item.createdAt.split("T")[1].split(".")[0]}</i>
         <input type="checkbox" id={item._id} onChange={toggleStatus} />
-        <i>{item.createdAt.split("T")[0]} - {item.createdAt.split("T")[1].split(".")[0]}</i>
       </s.Container>
     );
   };
 
   const detailedTask = (item) => {
     return (
-      <s.Container id={item._id} key={item._id}>
+<s.Container id={item._id} key={item._id}>
         <s.InfoContainer>
           <h4>{item.title}</h4>
-          <p>{item.description}</p>
-          <p>{item.body}</p>
-         
+          <h5>{item.description}</h5>
         </s.InfoContainer>
-        {item.tags.length > 0 && <s.TagContainer>{
-           item.tags.map((tag)=> <li>{tag}</li>)}</s.TagContainer>}
+        <s.TagContainer>
+      {item.tags.length > 0 && item.tags.map((tag) => <li>{tag}</li>)}
+        </s.TagContainer>
+        <i>{item.createdAt.split("T")[0]} {item.createdAt.split("T")[1].split(".")[0]}</i>
         <input type="checkbox" id={item._id} onChange={toggleStatus} />
+        <p>{item.body}</p>
       </s.Container>
     );
   };

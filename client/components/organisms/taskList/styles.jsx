@@ -3,7 +3,7 @@ import { theme } from "../../../styles";
 
 const Container = styled.div`
   width: 100%;
-  height: 100%;
+  height: fit-content;
   border-radius: 5px;
   background-color: ${theme.colors.white};
   padding: ${theme.blockMargins.small} ${theme.blockMargins.medium};

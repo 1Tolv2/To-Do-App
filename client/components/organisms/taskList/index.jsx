@@ -10,6 +10,7 @@ export const TaskList = () => {
   const { taskData, setTaskData } = useContext(TaskContext);
   const router = useRouter()
   const [isDetailedList, setIsDetailedList] = useState(false);
+  const [taskList, setTaskList] = useState(null)
   const [displayDone, setDisplayDone] = useState(false);
 
 
@@ -18,9 +19,14 @@ export const TaskList = () => {
     if (!token) {
       router.push("/login");
     } else {
-    const data = await fetchTasks(token);
-    setTaskData(data.data);}
+    const {data} = await fetchTasks(token);
+    setTaskData(data)
+    setTaskList(data)}
   }, []);
+
+  useEffect(() => {
+router.query.tag && taskList && setTaskList(taskData.filter((item)=>item.tags.includes(router.query.tag)))
+  }, [router.query.tag])
 
   const toggleMenuType = () => {
     setIsDetailedList(!isDetailedList);
@@ -68,7 +74,7 @@ export const TaskList = () => {
         </div>
       </s.TableHead>
       <s.List>
-        <Task taskList={taskData} isDetailedList={isDetailedList} displayDone={displayDone} toggleStatus={toggleStatus}></Task>
+        <Task taskList={taskList} isDetailedList={isDetailedList} displayDone={displayDone} toggleStatus={toggleStatus}></Task>
       </s.List>
     </s.Container>
   );
