@@ -4,7 +4,6 @@ import InputField from "../../atoms/inputField";
 import { MainButton } from "../../atoms/mainButton";
 import { createTask, fetchTasks } from '../../API'
 import * as s from "./styles";
-import TagList from "../tagList";
 
 const TaskModal = ({ state }) => {
   const { setNewTaskModal } = state;
