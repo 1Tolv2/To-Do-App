@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import {useRouter} from 'next/router'
 import { TaskContext } from "../../../pages/_app";
 import InputField from "../../atoms/inputField";
 import { MainButton } from "../../atoms/mainButton";
@@ -6,6 +7,7 @@ import { createTask, fetchTasks } from '../../API'
 import * as s from "./styles";
 
 const TaskModal = ({ state }) => {
+  const router = useRouter()
   const { setNewTaskModal } = state;
   const {setTaskData} = useContext(TaskContext)
   const [description, setDescription] = useState(null);
@@ -20,6 +22,7 @@ const TaskModal = ({ state }) => {
       const {data} = await fetchTasks()
       setTaskData(data)
       setNewTaskModal(false)
+      router.reload(window.location.pathname)
   }
 
   return (

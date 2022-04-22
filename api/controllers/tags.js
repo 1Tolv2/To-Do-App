@@ -1,14 +1,20 @@
-const { getTags, getAllPostsByTag } = require("../models/post");
+const { createNewTag, getAllTagsByUserId } = require("../models/tag");
 
 const getAllTags = async (req, res) => {
-  const data = await getTags(req.user.userId);
+  const data = await getAllTagsByUserId(req.user.userId);
   res.json({ data });
 };
 
-const getPostsByTag = async (req, res) => {
-  const tag = req.params.tag;
-  const data = await getAllPostsByTag(tag);
-  res.json({ data });
+const handleNewTag = async (req, res) => {
+  const body = req.body;
+  console.log(body);
+  res.json({ data: [{ tagName: "test", messageList: [1, 2] }] });
 };
 
-module.exports = { getAllTags, getPostsByTag };
+// const getPostsByTag = async (req, res) => {
+//   const tag = req.params.tag;
+//   const data = await getAllPostsByTag(tag);
+//   res.json({ data });
+// };
+
+module.exports = { getAllTags, handleNewTag };

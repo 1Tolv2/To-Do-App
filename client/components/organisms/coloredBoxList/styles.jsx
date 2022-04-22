@@ -41,7 +41,7 @@ const ListFade = styled.div`
   position: absolute;
   top: 0;
   right: 0;
-  width: 70px;
+  width: 30px;
   height: 130px;
   background-image: linear-gradient(to right,transparent, ${theme.colors.mauveLight});
   z-index: 2;

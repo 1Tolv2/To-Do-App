@@ -100,4 +100,3 @@ module.exports = {
   getTags,
   getAllPostsByTag,
 };
-exports.Post = Post;
