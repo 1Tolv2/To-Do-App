@@ -2,6 +2,7 @@ import React from "react";
 import * as s from "./styles";
 
 const Task = ({ taskList, isDetailedList, displayDone, toggleStatus }) => {
+  console.log(taskList)
   const regularTask = (item) => {
     return (
       <s.Container id={item._id} key={item._id}>
@@ -22,7 +23,10 @@ const Task = ({ taskList, isDetailedList, displayDone, toggleStatus }) => {
           <h4>{item.title}</h4>
           <p>{item.description}</p>
           <p>{item.body}</p>
+         
         </s.InfoContainer>
+        {item.tags.length > 0 && <s.TagContainer>{
+           item.tags.map((tag)=> <li>{tag}</li>)}</s.TagContainer>}
         <input type="checkbox" id={item._id} onChange={toggleStatus} />
       </s.Container>
     );

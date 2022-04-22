@@ -97,6 +97,17 @@ const toggleTaskStatus = async (id) => {
   });
 };
 
+const fetchAllTags = async () => {
+  const token = localStorage.getItem("jwttoken");
+  const res = await fetch(`${APIURL}/tags`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return res.json();
+};
+
 export {
   APIURL,
   registerUser,
@@ -107,4 +118,5 @@ export {
   editUser,
   fetchUser,
   toggleTaskStatus,
+  fetchAllTags,
 };

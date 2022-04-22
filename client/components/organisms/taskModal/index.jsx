@@ -4,6 +4,7 @@ import InputField from "../../atoms/inputField";
 import { MainButton } from "../../atoms/mainButton";
 import { createTask, fetchTasks } from '../../API'
 import * as s from "./styles";
+import TagList from "../tagList";
 
 const TaskModal = ({ state }) => {
   const { setNewTaskModal } = state;
@@ -11,16 +12,17 @@ const TaskModal = ({ state }) => {
   const [description, setDescription] = useState(null);
   const [title, setTitle] = useState(null);
   const [body, setBody] = useState(null);
-
+  const [tags, setTags] = useState(null);
 
   async function handleOnSubmit(e) {
       e.preventDefault()
-      const payload = {description, title, body}
+      const payload = {description, title, body, tags: tags.split(", ")}
       await createTask(payload)
       const {data} = await fetchTasks()
       setTaskData(data)
       setNewTaskModal(false)
   }
+
   return (
     <s.Container>
       <s.Overlay onClick={() => setNewTaskModal(false)}></s.Overlay>
@@ -46,7 +48,15 @@ const TaskModal = ({ state }) => {
           onChange={(e) => setBody(e.target.value)}
           placeholder="Detailed description..."
           ></textarea>
+          <InputField
+            type="text"
+            id="tag"
+            value={tags}
+            setValue={setTags}
+            placeholder="Add tags by splitting with comma , ..."
+          />
           <MainButton fullWidth event={handleOnSubmit}>Add</MainButton>
+        
         </form>
       </s.Modal>
     </s.Container>

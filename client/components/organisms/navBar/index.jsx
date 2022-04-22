@@ -24,21 +24,21 @@ async function handleLogOut() {
     router.push("/login");
   }
 }
-async function editUser() {
-  setEditModal(true)
-}
+// async function editUser() {
+//   setEditModal(true)
+// }
 
 userData && console.log(userData)
   return (
     <s.NavContainer>
       {editModal && <EditModal modal={{editModal, setEditModal}}></EditModal>}
-      {userData && <div>
+      {/* {userData && <div>
         <h2>{userData.username}</h2>
         <img src={`${APIURL}/${userData.image}`} />
         {userData.settings.name && <p>{userData.name}</p>}
         {userData.settings.email && <p>{userData.email}</p>}
         <MainButton type="inverted" event={editUser} fullWidth>Edit</MainButton>
-      </div>}
+      </div>} */}
       <s.List>
         <s.ListItem>
           <Image height="50" width="50" src="/lock-svgrepo-com.svg" />

@@ -25,7 +25,7 @@ export default function Home() {
     <MainLayout>
       <NavBar state={{ newTaskModal, setNewTaskModal }}></NavBar>
       <div>
-        <h1>Welcome back!</h1>
+        {userData ? <h1>Welcome {userData.username}!</h1> : <h1>Welcome!</h1>}
         <main>
           <h2>My Tags</h2>
           <ColoredBoxList></ColoredBoxList>

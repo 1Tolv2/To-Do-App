@@ -10,7 +10,7 @@ const Container = styled.div`
   border-radius: 5px;
   padding: 15px 5px;
   text-align: center;
-  color: white;
+  color: black;
   background-color: ${({ bgColor }) =>
     bgColor ? theme.colors[bgColor] : theme.colors.mauveMain};
   margin-right: ${theme.blockMargins.small};

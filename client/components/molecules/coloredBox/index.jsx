@@ -3,7 +3,8 @@ import Link from 'next/link'
 import * as s from "./styles";
 import {MainButton} from '../../atoms/mainButton'
 
-export const ColoredBox = ({ type, title, href }) => {
+export const ColoredBox = ({ type, taskData, tagData }) => {
+  console.log("DATA",taskData, tagData)
   return (
     <>
       {type === "addBox" ? (
@@ -12,9 +13,9 @@ export const ColoredBox = ({ type, title, href }) => {
           <MainButton type="round">+</MainButton>
         </s.Container>
       ) : (
-        <Link href="/"><a><s.Container bgColor="white">
-            <h4>Project Title</h4>
-            <p>x task remaining</p>
+        <Link href="/tags/"><a><s.Container bgColor="white">
+            <h4>{tagData}</h4>
+            <p>{taskData.length} task remaining</p>
         </s.Container></a></Link>
       )}
     </>
