@@ -28,7 +28,6 @@ export const ColoredBoxList = () => {
         </ul>
         <s.ListFade></s.ListFade>
       </s.ListContainer>
-        {/* <ColoredBox type="addBox"></ColoredBox>  */}
     </s.Container>
   );
 };

@@ -10,7 +10,6 @@ const {
 
 const handleNewPost = async (req, res) => {
   const { title, description, body, tags } = req.body;
-  console.log();
   const userId = req.user.userId;
   const data = await createPost(userId, title, description, body, tags);
   res.json({ data });

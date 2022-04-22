@@ -4,7 +4,6 @@ import * as s from "./styles";
 import {MainButton} from '../../atoms/mainButton'
 
 export const ColoredBox = ({ type, taskData, tagData }) => {
-  console.log("DATA",taskData, tagData)
   return (
     <>
       {type === "addBox" ? (

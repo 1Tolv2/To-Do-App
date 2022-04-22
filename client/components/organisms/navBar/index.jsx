@@ -24,11 +24,7 @@ async function handleLogOut() {
     router.push("/login");
   }
 }
-// async function editUser() {
-//   setEditModal(true)
-// }
 
-userData && console.log(userData)
   return (
     <s.NavContainer>
       {editModal && <EditModal modal={{editModal, setEditModal}}></EditModal>}
@@ -39,18 +35,6 @@ userData && console.log(userData)
             <a>Dashboard</a>
           </Link>
         </s.ListItem>
-        {/* <s.ListItem>
-          <img src="/lock-svgrepo-com.svg" />
-          <Link href="/">
-            <a>Tags</a>
-          </Link>
-        </s.ListItem> */}
-        {/* <s.ListItem>
-          <img src="/lock-svgrepo-com.svg" />
-          <Link href="/">
-            <a>Tasks</a>
-          </Link>
-        </s.ListItem> */}
       </s.List>
       <MainButton type="filled" bgColor="greenMain" fullWidth event={toggleTaskModal}>
         Add task

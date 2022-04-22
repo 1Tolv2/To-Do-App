@@ -16,7 +16,6 @@ export default function EditModal({ modal }) {
 
   useEffect(() => {
     const { name, email, settings } = userData;
-    console.log(userData);
     setName(name);
     setEmail(email);
     setSettingEmail(settings.email);

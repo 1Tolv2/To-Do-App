@@ -1,11 +1,8 @@
 import styled from 'styled-components'
 
 const NavContainer = styled.nav`
-display:grid;
+display: grid;
 grid-template-rows: auto 110px 110px;
-/* display: flex;
-flex-direction: column;
-justify-content: space-around; */
 height: 100vh;
 width: 100%;
 padding: 40px 20px;
