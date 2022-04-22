@@ -1,9 +1,11 @@
 import styled from 'styled-components'
 
 const NavContainer = styled.nav`
-display: flex;
+display:grid;
+grid-template-rows: auto 110px 110px;
+/* display: flex;
 flex-direction: column;
-justify-content: space-between;
+justify-content: space-around; */
 height: 100vh;
 width: 100%;
 padding: 40px 20px;
@@ -28,6 +30,7 @@ display: flex;
 margin: 20px 0;
 font-size: 1.3em;
 img {
+    width: 25px;
     margin-right: 5px;
 }
 `

@@ -32,32 +32,25 @@ userData && console.log(userData)
   return (
     <s.NavContainer>
       {editModal && <EditModal modal={{editModal, setEditModal}}></EditModal>}
-      {/* {userData && <div>
-        <h2>{userData.username}</h2>
-        <img src={`${APIURL}/${userData.image}`} />
-        {userData.settings.name && <p>{userData.name}</p>}
-        {userData.settings.email && <p>{userData.email}</p>}
-        <MainButton type="inverted" event={editUser} fullWidth>Edit</MainButton>
-      </div>} */}
       <s.List>
         <s.ListItem>
-          <Image height="50" width="50" src="/lock-svgrepo-com.svg" />
+          <img src="/person-fill-svgrepo-com.svg" />
           <Link href="/">
             <a>Dashboard</a>
           </Link>
         </s.ListItem>
-        <s.ListItem>
-          <Image height="50" width="50" src="/lock-svgrepo-com.svg" />
+        {/* <s.ListItem>
+          <img src="/lock-svgrepo-com.svg" />
           <Link href="/">
             <a>Tags</a>
           </Link>
-        </s.ListItem>
-        <s.ListItem>
-          <Image height="50" width="50" src="/lock-svgrepo-com.svg" />
+        </s.ListItem> */}
+        {/* <s.ListItem>
+          <img src="/lock-svgrepo-com.svg" />
           <Link href="/">
             <a>Tasks</a>
           </Link>
-        </s.ListItem>
+        </s.ListItem> */}
       </s.List>
       <MainButton type="filled" bgColor="greenMain" fullWidth event={toggleTaskModal}>
         Add task

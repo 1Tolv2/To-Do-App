@@ -35,13 +35,13 @@ const Container = styled.div`
 `;
 const ListContainer = styled.div`
   position: relative;
-  width: 83%;
+  width: 100%;
 `;
 const ListFade = styled.div`
   position: absolute;
   top: 0;
   right: 0;
-  width: 30px;
+  width: 70px;
   height: 130px;
   background-image: linear-gradient(to right,transparent, ${theme.colors.mauveLight});
   z-index: 2;
