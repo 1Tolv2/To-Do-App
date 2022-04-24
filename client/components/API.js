@@ -119,7 +119,7 @@ const createTag = async (payload) => {
     },
     body: JSON.stringify(payload),
   });
-  return await res.json();
+  return res;
 };
 
 export {
