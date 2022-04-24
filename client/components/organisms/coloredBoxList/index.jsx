@@ -19,7 +19,7 @@ export const ColoredBoxList = () => {
 
   useEffect(() => {
     getAllTags();
-  }, []);
+  }, [displayTagModal]);
 
   return (
     <>

@@ -11,8 +11,6 @@ export const TagModal = ({setModal}) => {
     const [tagList, setTagList] = useState([])
 
     useEffect(() => {
-        console.log("HERE", tagData)
-        // tagData.map((tag) => tagList.push(tag.tagName))
         setTagList(tagData)
     }, [])
 
@@ -23,7 +21,7 @@ export const TagModal = ({setModal}) => {
     function addTagToList(e) {
         e.preventDefault()
         postTag()
-        setTagList([...tagList, tagName])
+        setTagList([...tagList, {tagName}])
     }
   return (
     <s.Container >

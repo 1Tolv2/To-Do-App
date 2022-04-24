@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { theme } from "../../../styles";
 
 const Container = styled.div`
 position: absolute;
@@ -44,4 +45,27 @@ textarea {
 }
 `
 
-export {Container, Overlay, Modal}
+const Select = styled.select`
+  width: 100%;
+  background-color: #e6e6e6;
+  border-radius: 7px;
+  border: none;
+  padding: 10px ;
+  font-size: 1.1em;
+`
+
+const List = styled.ul`
+display: flex;
+flex-wrap: wrap;
+flex-direction: row;
+li{
+  padding: 3px 5px 5px 5px;
+    margin: 2px;
+    border-radius: 5px;
+    height: fit-content;
+    color: white;
+    background-color: ${theme.colors.orangeMain};
+}
+`
+
+export {Container, Overlay, Modal, Select, List}
