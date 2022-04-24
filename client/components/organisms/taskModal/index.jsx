@@ -24,7 +24,7 @@ useEffect(() => {
 
   function handleAddTag(e) {
     e.preventDefault()
-    setTagList([...tagList, tag]);
+    tag && setTagList([...tagList, tag]);
   }
 
   async function handleOnSubmit(e) {
@@ -62,19 +62,13 @@ useEffect(() => {
             onChange={(e) => setBody(e.target.value)}
             placeholder="Detailed description..."
           ></textarea>
-          {/* <InputField
-            type="text"
-            id="tag"
-            value={tags}
-            setValue={setTags}
-            placeholder="Add tags by splitting with comma , ..."
-          /> */}
           <s.List>
             {tagList.map((tag) => {
               return (<li>{tag}</li>) })}
           </s.List>
           <label for="tag">Choose tags:</label>
           <s.Select id="tag" value={tag} onChange={(e) => setTag(e.target.value)}>
+            <option value={null}></option>
             {tagOption && tagOption.map((item) => {
             return (<option value={item}>{item}</option>)})
             }
