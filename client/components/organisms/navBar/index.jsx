@@ -1,17 +1,13 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import {useRouter} from 'next/router'
 import Link from "next/link";
-import {UserContext} from '../../../pages/_app'
-import {APIURL, logOutUser} from '../../API'
+import {logOutUser} from '../../API'
 import { MainButton } from "../../atoms/mainButton";
-import * as s from "./styles";
-import Image from "next/image";
 import EditModal from "../EditModal";
+import * as s from "./styles";
 
 export const NavBar = ({state}) => {
   const [editModal, setEditModal] = useState(false);
-
-  const {userData, setUserData} = useContext(UserContext);
   const router = useRouter()
 const {newTaskModal, setNewTaskModal} = state
 function toggleTaskModal() {

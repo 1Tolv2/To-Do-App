@@ -11,7 +11,7 @@ const Container = styled.div`
   ul {
     display: flex;
     flex-direction: row;
-    width: 100%;
+    width: 90%;
     margin: 0;
     padding: 0;
     overflow-x: scroll;
@@ -41,8 +41,8 @@ const ListContainer = styled.div`
 const ListFade = styled.div`
   position: absolute;
   top: 0;
-  right: 0;
-  width: 30px;
+  right: 130px;
+  width: 50px;
   height: 130px;
   background-image: linear-gradient(to right,transparent, ${theme.colors.mauveLight});
   z-index: 2;

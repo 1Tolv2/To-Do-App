@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
-import * as s from "./styles";
 import {Form} from "../../molecules/Form";
+import * as s from "./styles";
 
 export const RegisterForm = ({ type }) => {
   return (

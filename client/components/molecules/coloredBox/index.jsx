@@ -1,7 +1,7 @@
 import React from "react";
 import Link from 'next/link'
+import { MainButton } from '../../atoms/mainButton'
 import * as s from "./styles";
-import {MainButton} from '../../atoms/mainButton'
 
 export const ColoredBox = ({ type, taskData, tagData, event }) => {
   return (

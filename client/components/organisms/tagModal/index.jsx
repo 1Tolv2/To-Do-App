@@ -1,12 +1,12 @@
 import React, {useContext, useEffect, useState} from 'react'
-import * as s from './styles'
 import { TagContext } from '../../../pages/_app'
 import { createTag } from '../../API'
 import InputField from '../../atoms/inputField'
 import { MainButton } from '../../atoms/mainButton'
+import * as s from './styles'
 
 export const TagModal = ({setModal}) => {
-    const {tagData, setTagData} = useContext(TagContext)
+    const {tagData} = useContext(TagContext)
     const [tagName, setTagName] = useState('')
     const [tagList, setTagList] = useState([])
 
@@ -15,7 +15,7 @@ export const TagModal = ({setModal}) => {
     }, [])
 
     async function postTag() {
-        const {data} = await createTag({tagName})
+        await createTag({tagName})
     }
 
     function addTagToList(e) {

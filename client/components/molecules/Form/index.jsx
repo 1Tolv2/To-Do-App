@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { useRouter } from "next/router";
-import * as s from "./styles";
 import { UserContext } from "../../../pages/_app";
 import * as API from "../../API";
 import { MainButton } from "../../atoms/mainButton";
 import { BodyRegularText } from "../../atoms/bodyRegularText/index";
+import * as s from "./styles"
 
 export const Form = ({ type, bgColor }) => {
   const {setUserData} = useContext(UserContext)

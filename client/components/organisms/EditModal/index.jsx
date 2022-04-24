@@ -7,7 +7,7 @@ import * as s from "./styles";
 export default function EditModal({ modal }) {
   const router = useRouter();
 
-  const { userData, setUserData } = useContext(UserContext);
+  const { userData } = useContext(UserContext);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [image, setImage] = useState("");

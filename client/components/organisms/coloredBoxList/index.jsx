@@ -1,15 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
-import { TagContext } from "../../../pages/_app";
+import { TagContext, TaskContext } from "../../../pages/_app";
 import { fetchAllTags } from "../../API";
-import { TaskContext } from "../../../pages/_app";
 import { ColoredBox } from "../../molecules/coloredBox";
 import { TagModal } from "../tagModal";
 import * as s from "./styles";
 
 export const ColoredBoxList = () => {
-  const { taskData, setTaskData } = useContext(TaskContext);
+  const { taskData } = useContext(TaskContext);
   const {tagData, setTagData} = useContext(TagContext);
-  // const [tagsData, setTagsData] = useState(null);
   const [displayTagModal, setDisplayTagModal] = useState(false);
 
   async function getAllTags() {

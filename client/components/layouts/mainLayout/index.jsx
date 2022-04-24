@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import Head from "next/head";
 import { UserContext } from "../../../pages/_app";
-import * as s from "./styles";
 import { NavBar } from "../../organisms/navBar";
+import * as s from "./styles";
 
 export const MainLayout = ({ state, children }) => {
   const { userData, setUserData } = useContext(UserContext);
