@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { theme } from "../../../styles";
 
 const Container = styled.div`
 position: absolute;
@@ -27,21 +28,18 @@ background-color: white;
 border-radius: 5px;
 padding: 20px;
 z-index: 4;
-textarea {
-  width: 100%;
-  height: 200px;
-  background-color: #e6e6e6;
-  border-radius: 7px;
-  margin: 10px 0;
-  padding: 10px 0 10px 10px;
-  border: none;
-  color: black;
-  font-size: 1.1em;
-  resize: none;
-  :focus {
-    outline: none;
-  }
-}
-`
+ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    li{
+        padding: 3px 5px 5px 5px;
+    margin: 2px;
+    border-radius: 5px;
+    height: fit-content;
+    color: white;
+    background-color: ${theme.colors.orangeMain};
+    }
+}`
 
 export {Container, Overlay, Modal}

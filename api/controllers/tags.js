@@ -7,7 +7,7 @@ const getAllTags = async (req, res) => {
 
 const handleNewTag = async (req, res) => {
   const body = req.body;
-  console.log(body);
+  await createNewTag(body.tagName, req.user.userId);
   res.json({ data: [{ tagName: "test", messageList: [1, 2] }] });
 };
 

@@ -6,6 +6,7 @@ const Container = styled.div`
   display: flex;
   flex-flow: row wrap;
   width: 100%;
+  min-height: 130px;
   margin-bottom: ${theme.blockMargins.small};
   ul {
     display: flex;

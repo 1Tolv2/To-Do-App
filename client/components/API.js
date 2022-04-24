@@ -104,7 +104,22 @@ const fetchAllTags = async () => {
       Authorization: `Bearer ${token}`,
     },
   });
-  return res.json();
+  return await res.json();
+};
+
+const createTag = async (payload) => {
+  const token = localStorage.getItem("jwttoken");
+  console.log(payload);
+  console.log(token);
+  const res = await fetch(`${APIURL}/tags`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+  return await res.json();
 };
 
 export {
@@ -118,4 +133,5 @@ export {
   fetchUser,
   toggleTaskStatus,
   fetchAllTags,
+  createTag,
 };

@@ -20,7 +20,7 @@ export const MainLayout = ({ state, children }) => {
           {userData ? <h1>Welcome {userData.username}!</h1> : <h1>Welcome!</h1>}
           {children}
         </main>
-        <aside>SideSection</aside>
+        {/* <aside>SideSection</aside> */}
       </s.Wrapper>
     </div>
   );
