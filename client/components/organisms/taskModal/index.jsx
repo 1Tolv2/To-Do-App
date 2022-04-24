@@ -14,20 +14,22 @@ const TaskModal = ({ state }) => {
   const [description, setDescription] = useState(null);
   const [title, setTitle] = useState(null);
   const [body, setBody] = useState(null);
-  const [tags, setTags] = useState(null);
+  const [tag, setTag] = useState(null);
   const [tagList, setTagList] = useState([])
+  const [tagOption, setTagOption] = useState([])
 
 useEffect(() => {
-  setTagList(tagData)
+  setTagOption(tagData.map((tag) => tag.tagName))
 },[])
 
-  function handleAddTag() {
-    setTagList([...tagList, tagName]);
+  function handleAddTag(e) {
+    e.preventDefault()
+    setTagList([...tagList, tag]);
   }
 
   async function handleOnSubmit(e) {
     e.preventDefault();
-    const payload = { description, title, body, tagsList };
+    const payload = { description, title, body, tagList };
     await createTask(payload);
     const { data } = await fetchTasks();
     setTaskData(data);
@@ -68,12 +70,13 @@ useEffect(() => {
             placeholder="Add tags by splitting with comma , ..."
           /> */}
           <s.List>
-            {tagList.map((tag) => {return (<li>{tag.tagName}</li>) })}
+            {tagList.map((tag) => {
+              return (<li>{tag}</li>) })}
           </s.List>
           <label for="tag">Choose tags:</label>
-          <s.Select id="tag">
-            {tagList && tagList.map((tag) => {
-            return (<option value={tag.tagName}>{tag.tagName}</option>)})
+          <s.Select id="tag" value={tag} onChange={(e) => setTag(e.target.value)}>
+            {tagOption && tagOption.map((item) => {
+            return (<option value={item}>{item}</option>)})
             }
           </s.Select>
           <MainButton event={handleAddTag}>Add</MainButton>
